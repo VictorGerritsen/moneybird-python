@@ -1,6 +1,10 @@
 # Python
 __pycache__/
 *.pyc
+Pipfile
+Pipfile.lock
+*.iml
+.idea
 
 # Docs
 docs/_build

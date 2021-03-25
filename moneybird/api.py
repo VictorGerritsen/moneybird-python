@@ -1,5 +1,5 @@
 import logging
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import requests
 
@@ -130,7 +130,14 @@ class MoneyBird(object):
         if administration_id is not None:
             url = urljoin(url, '%s/' % administration_id)
 
+        resource_path_parsed = urlparse(resource_path)
+        resource_path = resource_path_parsed.path
+
         url = urljoin(url, '%s.json' % resource_path)
+
+        query = resource_path_parsed.query
+        if query:
+            url = urljoin(url, "?%s" % query)
 
         return url
 
